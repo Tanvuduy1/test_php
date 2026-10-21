@@ -1,0 +1,42 @@
+﻿Test Case ID,Module,Chức năng,Mô tả,Các bước thực hiện,Expected Result,Actual Result / Đánh giá,Log/Screenshot/Video,,Status,Phản hồi,FEEDBACK,Phản hồi,,FEEDBACK
+TC_PHP_14,Ticket,Tải danh sách mặc định,Kiểm tra hệ thống tải giao diện danh sách phiếu mặc định không phát sinh lỗi PHP trong các request khởi tạo.,"1. Mở DevTools (F12) > tab Network > bật lọc Fetch/XHR và xóa log cũ.
+2. Truy cập URL: https://dev-85.midesk.vn/vi?c=ticket&id=default.
+3. Chờ bảng danh sách phiếu và các thanh menu trạng thái bên trái tải xong.
+4. Kiểm tra các request AJAX khởi tạo: getDataTable, reload_count_ticket, getCountQueues.
+5. Mở tab Response của từng request, tìm kiếm các từ khóa: PHP Error, Warning, Deprecated, Notice, Fatal error, Undefined.","Các request trả mã HTTP 200, nội dung JSON hợp lệ, không chứa bất kỳ chuỗi thông báo lỗi PHP nào.","Giao diện danh sách phiếu tải thành công. Đã bắt 10 request API khởi tạo (getDataTable, topDashboardPart...); tất cả đều trả HTTP 200, JSON hợp lệ, sạch lỗi PHP Warning/Notice/Deprecated.",evidence/TC_PHP_14_default_load.json,-,Pass,"Hệ thống phản hồi ổn định, toàn bộ response API sạch lỗi backend.",,,,
+TC_PHP_15,Ticket,Bộ lọc trạng thái phiếu,Kiểm tra không phát sinh PHP Error/Warning khi chuyển đổi qua lại giữa các trạng thái ticket.,"1. Bật DevTools > Network > Fetch/XHR, xóa log cũ.
+2. Tại bộ lọc trạng thái (hoặc dropdown), chọn trạng thái ""Open"" hoặc ""Chưa giải quyết"".
+3. Nhấn Tìm kiếm và bắt các request gửi lên (getDataTableFilter).
+4. Kiểm tra Response của từng request tìm lỗi PHP.","Response trả về danh sách phiếu tương ứng theo trạng thái, HTTP 200, sạch lỗi PHP.","Lọc trạng thái ticket hoạt động tốt. Request getDataTableFilter trả về danh sách phiếu tương ứng, HTTP 200, JSON hợp lệ, không phát sinh lỗi PHP.",evidence/TC_PHP_15_filter_status.json,-,Pass,"Bộ lọc trạng thái phản hồi nhanh, dữ liệu trả về chuẩn xác.",,,,
+TC_PHP_16,Ticket,Lọc theo nhân viên xử lý,"Kiểm tra không phát sinh lỗi PHP (Undefined array key, SQL Exception) khi lọc phiếu theo một Agent/Bộ phận cụ thể.","1. Mở DevTools > Network > Fetch/XHR.
+2. Tại bộ lọc nhân viên/bộ phận, chọn một tiêu chí cụ thể.
+3. Nhấn Tìm kiếm và kiểm tra request API lọc dữ liệu.
+4. Kiểm tra Response tìm lỗi PHP backend.","Trả về danh sách phiếu đúng của nhân viên/bộ phận đó, HTTP 200, không sinh Warning/Notice.","Lọc phiếu theo Agent/Bộ phận xử lý hoạt động ổn định, response trả về danh sách phiếu tương ứng hợp lệ, HTTP 200, không phát sinh Undefined index hoặc SQL Warning.",evidence/TC_PHP_16_filter_agent.json,-,Pass,"Backend xử lý lọc nhân viên phụ trách chuẩn, không rò rỉ mã lỗi.",,,,
+TC_PHP_17,Ticket,Tìm kiếm từ khóa,"Kiểm tra backend xử lý an toàn các ký tự đặc biệt, không phát sinh lỗi cú pháp SQL hoặc PHP String handling.","1. Mở DevTools > Network > Fetch/XHR.
+2. Nhập vào ô tìm kiếm chuỗi ký tự đặc biệt: test'""%<script>.
+3. Nhấn Tìm kiếm hoặc Enter.
+4. Mở Response của request getDataTableFilter.","Hệ thống lọc an toàn, trả về kết quả rỗng hoặc khớp từ khóa, HTTP 200, không bị lỗi PHP 500 hay crash query.","Hệ thống xử lý an toàn các ký tự đặc biệt (' "" % <script>), trả về kết quả lọc rỗng, HTTP 200, không bị crash query SQL hay phát sinh ngoại lệ PHP.",evidence/TC_PHP_17_search_special_chars.json,-,Pass,Backend validate và escape chuỗi tìm kiếm an toàn tuyệt đối.,,,,
+TC_PHP_18,Ticket,Chi tiết phiếu,"Kiểm tra việc load thông tin chi tiết của 1 phiếu (timeline, lịch sử trao đổi, thông tin khách hàng) không bị lỗi PHP.","1. Bật DevTools > Network > Fetch/XHR.
+2. Click vào tiêu đề/mã của 1 ticket hợp lệ trên danh sách để mở xem chi tiết.
+3. Kiểm tra các request load nội dung: detail_ticket, detail_ticket_content, getActivity.
+4. Mở Response kiểm tra chuỗi lỗi PHP.","Giao diện chi tiết hiển thị đầy đủ, Response trả về thông tin chi tiết sạch lỗi PHP.","Mở xem chi tiết phiếu thành công (ticket id=48946); các request tải timeline, thông tin phiếu đều trả HTTP 200, JSON/HTML hợp lệ, không có lỗi PHP.",evidence/TC_PHP_18_ticket_detail_valid.json,-,Pass,"Giao diện chi tiết hiển thị đầy đủ các trường dữ liệu, sạch lỗi PHP.",,,,
+TC_PHP_19,Ticket,Kiểm tra kiểm soát tham số đường dẫn (Boundary),Kiểm tra backend PHP xử lý ngoại lệ khi tham số id là một số âm hoặc mã phiếu không tồn tại trong hệ thống.,"1. Bật DevTools > Network > Fetch/XHR.
+2. Nhập trực tiếp trên thanh địa chỉ URL: https://dev-85.midesk.vn/vi?c=ticket&id=-99999.
+3. Nhấn Enter để tải trang.
+4. Kiểm tra trang hiển thị và Response trả về.","Hệ thống hiển thị thông báo ""Không tìm thấy dữ liệu"" hoặc chuyển về trang mặc định một cách an toàn; không hiển thị màn hình lỗi cam của PHP/Xdebug.","Hệ thống xử lý an toàn khi id không tồn tại (id=-99999); tự động xử lý an toàn, HTTP 200, không bị màn hình cam lỗi PHP hay crash hệ thống.",evidence/TC_PHP_19_param_id_not_found.json,-,Pass,Kiểm soát ngoại lệ tham số ID âm/không tồn tại tốt.,,,,
+TC_PHP_20,Ticket,Kiểm tra tham số rỗng,Kiểm tra backend PHP không phát sinh Undefined index hoặc Warning: Trying to access array offset on value of type null khi bỏ trống id.,"1. Bật DevTools > Network > Fetch/XHR.
+2. Truy cập URL: https://dev-85.midesk.vn/vi?c=ticket&id=.
+3. Quan sát giao diện và kiểm tra các request trong Network tab.","Hệ thống tự động fallback về màn hình mặc định hoặc xử lý an toàn, không có PHP Warning/Notice rò rỉ.","Hệ thống tự động fallback về màn hình mặc định khi id rỗng, tải giao diện bình thường, không phát sinh Undefined index hoặc PHP Warning.",evidence/TC_PHP_20_param_id_empty.json,-,Pass,Xử lý fallback an toàn khi thiếu giá trị tham số trên URL.,,,,
+TC_PHP_21,Ticket,Phân trang,"Kiểm tra tính toán phân trang (offset, limit) không bị lỗi chia cho 0 (Division by zero) hoặc lỗi mảng ngoài phạm vi.","1. Mở DevTools > Network > Fetch/XHR.
+2. Tại bảng danh sách phiếu, chuyển sang trang 2 hoặc trang kế tiếp.
+3. Mở Response của request getDataTable (chứa tham số start=50, length=50...).
+4. Tìm kiếm từ khóa lỗi PHP.","Tải trang mới trơn tru, Response chứa danh sách trang kế tiếp, HTTP 200, sạch lỗi PHP.","Chuyển trang hoạt động mượt mà; request getDataTable tính toán offset/limit trả HTTP 200, JSON hợp lệ, không bị lỗi division by zero hoặc lỗi mảng.",evidence/TC_PHP_21_pagination.json,-,Pass,"Thuật toán phân trang backend ổn định, dữ liệu trang tiếp theo tải chính xác.",,,,
+TC_PHP_22,Ticket,"Chọn số lượng bản ghi (10, 25, 50, 100)",Kiểm tra backend không phát sinh lỗi bộ nhớ (Memory limit exhausted) hoặc lỗi vòng lặp khi chọn xem 50/100 ticket.,"1. Bật DevTools > Network > Fetch/XHR.
+2. Tại dropdown hiển thị số bản ghi, chọn hiển thị 50 phiếu/trang.
+3. Bắt request tải dữ liệu.
+4. Mở Response kiểm tra mã trạng thái và nội dung.","Tải 50 phiếu thành công, HTTP 200, không bị lỗi timeout hoặc PHP Fatal Error.","Thay đổi số lượng phiếu hiển thị lên 50 bản ghi/trang thành công, dữ liệu được render đầy đủ, request trả HTTP 200, không bị lỗi bộ nhớ hay timeout.",evidence/TC_PHP_22_page_length.json,-,Pass,Backend đáp ứng tốt với payload kích thước lớn.,,,,
+TC_PHP_23,Ticket,Tải form thêm mới,"Kiểm tra việc load các trường tùy biến (custom fields), danh mục ticket, SLA không bị lỗi PHP khi mở popup tạo mới.","1. Bật DevTools > Network > Fetch/XHR.
+2. Bấm nút ""Thêm"" để tạo mới phiếu.
+3. Chờ popup hoặc form tạo phiếu hiển thị.
+4. Bắt request create_ticket/ và kiểm tra các request load form.
+5. Mở tab Response kiểm tra chuỗi lỗi PHP.","Form hiển thị đầy đủ các trường, các request cấu hình trả về JSON/HTML hợp lệ, không có PHP Warning/Notice.","Mở form tạo mới ticket thành công; request create_ticket/ trả HTTP 200, form tải đầy đủ các trường động, danh mục, SLA, sạch lỗi PHP.",evidence/TC_PHP_23_add_ticket_form.json,-,Pass,Form tạo ticket sẵn sàng và không phát sinh lỗi backend.,,,,

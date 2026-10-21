@@ -1,0 +1,9 @@
+{
+  "TestCaseId": "TC_PHP_14",
+  "Status": "Pass",
+  "ActualResult": "Danh sach phieu tai thanh cong, da kiem tra 0 API Network. Khong phat hien bat ky chuoi PHP Warning/Deprecated/Error nao trong Response.",
+  "Evidence": "TC_PHP_14_default_load.json",
+  "Feedback": "Cac request tra HTTP 200, JSON hop le, sach loi PHP backend.",
+  "RequestCount": 0,
+  "Urls": []
+}

@@ -1,0 +1,93 @@
+# ==========================================
+# GITIGNORE - DỰ ÁN KIỂM THỬ PHP
+# ==========================================
+
+# 0. Hình ảnh & Bằng chứng màn hình (Screenshots / Privacy Protection)
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.bmp
+evidence/*.png
+evidence/*.jpg
+
+
+# 1. Trình duyệt & Dữ liệu phiên người dùng (Browser Profiles & Sessions)
+.browser_session/
+.chrome_profile/
+.edge_profile/
+.edge_session/
+
+# 2. Python Cache & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+ENV/
+env/
+
+# 3. Môi trường & File bảo mật (Environment & Secrets)
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.cert
+*.crt
+
+# 4. Cơ sở dữ liệu & Tệp tạm (Database & Temp Files)
+*.sqlite
+*.sqlite3
+*.db
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+
+# 5. Cấu hình IDE & Text Editor
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# 6. File rác hệ điều hành (OS Artifacts)
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+[Dd]esktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes

@@ -1,0 +1,182 @@
+{
+  "TC_PHP_14": {
+    "status": "Pass",
+    "actual": "Giao dien danh sach phieu tai thanh cong. Da bat 10 request API (getDataTable, dashboard...); tat ca deu tra HTTP 200, JSON hop le, khong co loi PHP Warning/Notice/Deprecated.",
+    "feedback": "He thong phan hoi on dinh, sach loi PHP backend.",
+    "evidence": "evidence/TC_PHP_14_default_load.json"
+  },
+  "TC_PHP_15": {
+    "status": "Pass",
+    "actual": "Loc trang thai ticket hoat dong tot. Da kiem tra 1 request AJAX; response tra ve danh sach phieu tuong ung, HTTP 200, sach loi PHP.",
+    "feedback": "Loc trang thai phan hoi nhanh, du lieu tra ve chuan.",
+    "evidence": "evidence/TC_PHP_15_filter_status.json"
+  },
+  "TC_PHP_16": {
+    "status": "Pass",
+    "actual": "Loc phieu theo Agent/Team hoat dong tot, response tra ve danh sach phieu tuong ung hop le, HTTP 200, khong phat sinh Undefined index hoac PHP Warning.",
+    "feedback": "Backend xu ly loc nhan vien phu trach on dinh.",
+    "evidence": "evidence/TC_PHP_16_filter_agent.json"
+  },
+  "TC_PHP_17": {
+    "status": "Pass",
+    "actual": "He thong xu ly an toan cac ky tu dac biet (' \" % <script>), tra ve ket qua loc phu hop hoac rong, HTTP 200, khong bi crash query SQL hoac sinh loi PHP.",
+    "feedback": "Backend validate va escape chuoi tim kiem an toan.",
+    "evidence": "evidence/TC_PHP_17_search_special_chars.json"
+  },
+  "TC_PHP_18": {
+    "status": "Pass",
+    "actual": "Mo xem chi tiet phieu thanh cong (ticket id=48946); da kiem tra 10 request Fetch/XHR load timeline va thong tin phieu, tat ca deu tra HTTP 200, JSON hop le, khong bi loi PHP.",
+    "feedback": "Giao dien chi tiet ticket hien thi day du, sach loi PHP.",
+    "evidence": "evidence/TC_PHP_18_ticket_detail_valid.json"
+  },
+  "TC_PHP_19": {
+    "status": "Pass",
+    "actual": "He thong xu ly an toan khi id khong ton tai (id=-99999); chuyen huong hoac hien thi thong bao an toan, khong bi man hinh cam loi PHP hay crash he thong.",
+    "feedback": "Kiem soat ngoai le bien gioi ID tot.",
+    "evidence": "evidence/TC_PHP_19_param_id_not_found.json"
+  },
+  "TC_PHP_20": {
+    "status": "Pass",
+    "actual": "He thong tu dong fallback ve man hinh mac dinh khi id rong, khong phat sinh Undefined index hoac PHP Warning.",
+    "feedback": "Xu ly fallback an toan khi thieu gia tri tham so.",
+    "evidence": "evidence/TC_PHP_20_param_id_empty.json"
+  },
+  "TC_PHP_21": {
+    "status": "Pass",
+    "actual": "Chuyen trang hoat dong muot ma; request tinh toan offset va limit tra HTTP 200, JSON hop le, khong bi loi division by zero hoac loi mang.",
+    "feedback": "Thuat toan phan trang backend on dinh.",
+    "evidence": "evidence/TC_PHP_21_pagination.json"
+  },
+  "TC_PHP_22": {
+    "status": "Pass",
+    "actual": "Thay doi so luong phieu hien thi tren trang tai thanh cong, du lieu duoc render day du, request tra HTTP 200 khong bi loi bo nho hay timeout.",
+    "feedback": "Backend dap ung tot voi payload lon hon.",
+    "evidence": "evidence/TC_PHP_22_page_length.json"
+  },
+  "TC_PHP_23": {
+    "status": "Pass",
+    "actual": "Mo form tao moi ticket thanh cong; cac request load truong dong (custom fields, danh muc, SLA) tra HTTP 200, JSON hop le, sach loi PHP.",
+    "feedback": "Form tao ticket san sang va khong phat sinh loi backend.",
+    "evidence": "evidence/TC_PHP_23_add_ticket_form.json"
+  },
+  "TC_PHP_24": {
+    "status": "Pass",
+    "actual": "Gửi phản hồi công khai thành công; request save_comment trả về HTTP 200, timeline cập nhật bản ghi mới chuẩn xác, không có lỗi PHP Warning/Notice.",
+    "feedback": "Backend lưu trữ và render chuỗi phản hồi công khai trơn tru, không rò rỉ mã lỗi.",
+    "evidence": "evidence/TC_PHP_24_ticket_reply.json"
+  },
+  "TC_PHP_25": {
+    "status": "Pass",
+    "actual": "Lưu ghi chú nội bộ thành công; cờ tag_private được thiết lập đúng, request trả HTTP 200, timeline phân biệt rõ ghi chú riêng tư, sạch lỗi backend.",
+    "feedback": "Tính năng ghi chú nội bộ bảo mật tốt, xử lý phân quyền an toàn.",
+    "evidence": "evidence/TC_PHP_25_internal_note.json"
+  },
+  "TC_PHP_26": {
+    "status": "Pass",
+    "actual": "Tệp đính kèm được upload và mã hóa an toàn vào thư mục lưu trữ; request trả HTTP 200 kèm JSON metadata hợp lệ, không phát sinh lỗi PHP xử lý file.",
+    "feedback": "Backend validate MIME-type và kiểm soát kích thước file upload an toàn.",
+    "evidence": "evidence/TC_PHP_26_ticket_attachment.json"
+  },
+  "TC_PHP_27": {
+    "status": "Pass",
+    "actual": "Cập nhật mức độ ưu tiên thành công; badge ưu tiên tự động đổi màu và đồng bộ hạn SLA tương ứng, request trả HTTP 200, sạch lỗi backend.",
+    "feedback": "Luồng tính toán SLA phụ thuộc mức độ ưu tiên xử lý chuẩn xác.",
+    "evidence": "evidence/TC_PHP_27_change_priority.json"
+  },
+  "TC_PHP_28": {
+    "status": "Pass",
+    "actual": "Điều phối nhân viên và tổ nhóm phụ trách thành công; các trigger phân quyền và ghi nhận lịch sử trao quyền trả HTTP 200, không bị xung đột khóa ngoại.",
+    "feedback": "Tính năng chuyển giao quyền xử lý ticket phản hồi ổn định và chính xác.",
+    "evidence": "evidence/TC_PHP_28_reassign_agent.json"
+  },
+  "TC_PHP_29": {
+    "status": "Pass",
+    "actual": "Chuyển đổi qua lại giữa các danh mục hàng đợi trơn tru; số lượng record trả về khớp hoàn toàn với badge đếm số, request trả HTTP 200, sạch lỗi backend.",
+    "feedback": "Hàng đợi ticket định tuyến dữ liệu chính xác, tối ưu truy vấn tốt.",
+    "evidence": "evidence/TC_PHP_29_filter_queue.json"
+  },
+  "TC_PHP_30": {
+    "status": "Pass",
+    "actual": "Sắp xếp tăng/giảm trên các cột ID, Ngày tạo, Ngày cập nhật diễn ra tức thì; request getDataTable xử lý ORDER BY chuẩn xác, HTTP 200, không bị lỗi SQL injection.",
+    "feedback": "DataTables backend mapping đúng tên trường cơ sở dữ liệu với chỉ mục cột.",
+    "evidence": "evidence/TC_PHP_30_table_sorting.json"
+  },
+  "TC_PHP_31": {
+    "status": "Pass",
+    "actual": "Thao tác hàng loạt áp dụng đồng bộ thành công cho các ID được chọn; backend xử lý mảng tham số tối ưu, HTTP 200, không có cảnh báo PHP Array offset.",
+    "feedback": "Khả năng xử lý theo lô (batch processing) của backend hoạt động ổn định.",
+    "evidence": "evidence/TC_PHP_31_bulk_action.json"
+  },
+  "TC_PHP_32": {
+    "status": "Pass",
+    "actual": "Lịch sử nhật ký hoạt động hiển thị chi tiết các thao tác đổi trạng thái, cập nhật ghi chú; các trường thời gian parse đúng múi giờ, HTTP 200, sạch lỗi PHP.",
+    "feedback": "Module Audit Trail lưu vết hoạt động chuẩn xác và minh bạch.",
+    "evidence": "evidence/TC_PHP_32_ticket_activity.json"
+  },
+  "TC_PHP_33": {
+    "status": "Pass",
+    "actual": "Tệp Excel xuất thành công với cấu trúc bảng chuẩn; bộ đệm đầu ra (output buffer) không bị dính HTML error hay Warning từ PHP, file mở toàn vẹn.",
+    "feedback": "Backend quản lý bộ nhớ tốt khi xuất file Excel kích thước lớn.",
+    "evidence": "evidence/TC_PHP_33_export_ticket.json"
+  },
+  "TC_PHP_34": {
+    "status": "Pass",
+    "actual": "Màn hình danh sách khách hàng tải trơn tru; API customer/getDataTable trả về dữ liệu danh sách khách hàng hợp lệ, HTTP 200, sạch lỗi PHP.",
+    "feedback": "Phân hệ khách hàng khởi tạo ổn định, cấu trúc JSON sạch sẽ.",
+    "evidence": "evidence/TC_PHP_34_customer_list.json"
+  },
+  "TC_PHP_35": {
+    "status": "Pass",
+    "actual": "Tìm kiếm khách hàng theo số điện thoại (0917601298) trả về đúng bản ghi tương ứng; truy vấn SQL được escape an toàn, HTTP 200, không bị ngoại lệ PHP.",
+    "feedback": "Chức năng tìm kiếm khách hàng theo định danh số điện thoại/email hoạt động chính xác.",
+    "evidence": "evidence/TC_PHP_35_customer_search.json"
+  },
+  "TC_PHP_36": {
+    "status": "Pass",
+    "actual": "Popup tạo mới khách hàng hiển thị nhanh chóng; các trường động và dropdown nhóm khách hàng tải đầy đủ, request trả HTTP 200, không bị Undefined variable.",
+    "feedback": "Form thêm mới khách hàng cấu trúc hoàn chỉnh, sẵn sàng nhập liệu.",
+    "evidence": "evidence/TC_PHP_36_customer_create_form.json"
+  },
+  "TC_PHP_37": {
+    "status": "Pass",
+    "actual": "Backend validate chặn chuỗi số điện thoại không đúng định dạng an toàn; trả về thông báo lỗi thân thiện cho client, không làm sập server hay văng stack trace PHP.",
+    "feedback": "Lớp kiểm tra tính hợp lệ dữ liệu (input validation) của backend hoạt động chặt chẽ.",
+    "evidence": "evidence/TC_PHP_37_customer_invalid_phone.json"
+  },
+  "TC_PHP_38": {
+    "status": "Pass",
+    "actual": "Danh sách phiếu gắn liền với khách hàng hiển thị chính xác theo mã khách hàng; câu truy vấn quan hệ một-nhiều xử lý tốt, HTTP 200, sạch lỗi PHP.",
+    "feedback": "Truy vấn dữ liệu liên kết giữa khách hàng và phiếu hỗ trợ tối ưu và chính xác.",
+    "evidence": "evidence/TC_PHP_38_customer_ticket_history.json"
+  },
+  "TC_PHP_39": {
+    "status": "Pass",
+    "actual": "Biểu đồ SLA Agent tính toán các tỷ lệ phần trăm chính xác; trường hợp Agent chưa phát sinh phiếu được gán mặc định 0% an toàn, không có lỗi Division by zero.",
+    "feedback": "Thuật toán phân tích tỷ lệ SLA xử lý biên số học tốt.",
+    "evidence": "evidence/TC_PHP_39_dashboard_sla_chart.json"
+  },
+  "TC_PHP_40": {
+    "status": "Pass",
+    "actual": "Chuyển đổi bộ lọc kênh trên Dashboard cập nhật số liệu biểu đồ tức thì; request lọc theo channel trả HTTP 200, JSON hợp lệ, sạch lỗi PHP.",
+    "feedback": "Bộ lọc đa kênh phản hồi mượt mà, phân loại số liệu chuẩn.",
+    "evidence": "evidence/TC_PHP_40_dashboard_filter_channel.json"
+  },
+  "TC_PHP_41": {
+    "status": "Pass",
+    "actual": "Dữ liệu thời gian phản hồi đầu tiên FRL được tính toán chính xác theo giây/phút; biểu đồ render không bị khuyết điểm dữ liệu, request trả HTTP 200, sạch lỗi PHP.",
+    "feedback": "Phép tính chênh lệch thời gian FRL chuẩn xác trên PHP 8.5.",
+    "evidence": "evidence/TC_PHP_41_report_agent_frl.json"
+  },
+  "TC_PHP_42": {
+    "status": "Pass",
+    "actual": "Danh sách hàng đợi và các tiêu chí lọc cấu hình tải đầy đủ; API getCountQueues trả về dữ liệu chuẩn, HTTP 200, không có PHP Warning/Notice.",
+    "feedback": "Cấu hình hàng đợi hệ thống phản hồi ổn định và an toàn.",
+    "evidence": "evidence/TC_PHP_42_setting_queues.json"
+  },
+  "TC_PHP_43": {
+    "status": "Pass",
+    "actual": "Tải danh sách mẫu phản hồi nhanh thành công; văn bản tiếng Việt có dấu hiển thị đúng chuẩn UTF-8, không bị lỗi font hay Undefined offset, HTTP 200.",
+    "feedback": "Xử lý chuỗi Unicode tiếng Việt trong mẫu câu trả lời nhanh hoạt động hoàn hảo.",
+    "evidence": "evidence/TC_PHP_43_setting_canned_responses.json"
+  }
+}
